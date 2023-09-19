@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
             } else if (username === "administrador" && password === "contraseña") {
                 alert("Inicio de sesión exitoso");
                 // Redireccionar a la página principal
-                window.location.href = "menu.html";
+                window.location.href = "menu_principal_administrador.html";
             } else {
                 alert("Credenciales incorrectas. Inténtalo de nuevo.");
             }
