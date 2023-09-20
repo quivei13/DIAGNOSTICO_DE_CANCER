@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Paciente</title>
+    <link rel="stylesheet" href="CSS/registrar_paciente.css"> <!-- Incluye tu archivo CSS principal -->
+</head>
+<body>
+    <div class="container">
+        <h1>Registrar Paciente</h1>
+
+        <!-- Formulario de registro de paciente -->
+        <form id="registrar-paciente-form">
+            <label for="rut">Rut:</label>
+            <input type="text" id="rut" name="rut" placeholder="Ejemplo: 12345678-9" required>
+
+            <label for="nombres">Nombres:</label>
+            <input type="text" id="nombres" name="nombres" required>
+
+            <label for="apellido-paterno">Apellido Paterno:</label>
+            <input type="text" id="apellido-paterno" name="apellido-paterno" required>
+
+            <label for="apellido-materno">Apellido Materno:</label>
+            <input type="text" id="apellido-materno" name="apellido-materno" required>
+
+            <label for="genero">Género:</label>
+            <select id="genero" name="genero">
+                <option value="masculino">Masculino</option>
+                <option value="femenino">Femenino</option>
+            </select>
+
+            <label for="fecha-nacimiento">Fecha de Nacimiento:</label>
+            <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" required>
+
+            <label for="mail">Correo Electrónico:</label>
+            <input type="email" id="mail" name="mail" required>
+
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono">
+
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad" required>
+
+            <label for="cancer-identificado">Cáncer Identificado:</label>
+            <input type="checkbox" id="cancer-identificado" name="cancer-identificado">
+
+            <label for="diagnostico-inicial">Diagnóstico Inicial:</label>
+            <textarea id="diagnostico-inicial" name="diagnostico-inicial"></textarea>
+
+            <label for="radiografias">Radiografías:</label>
+            <input type="file" id="radiografias" name="radiografias" accept="image/*" multiple>
+
+            <label for="condiciones-fisicas">Condiciones Físicas:</label>
+            <textarea id="condiciones-fisicas" name="condiciones-fisicas"></textarea>
+
+            <label for="condiciones-ambientales">Condiciones Ambientales Actuales:</label>
+            <textarea id="condiciones-ambientales" name="condiciones-ambientales"></textarea>
+
+            <label for="datos-geneticos">Datos Genéticos y Moleculares:</label>
+            <textarea id="datos-geneticos" name="datos-geneticos"></textarea>
+
+            <label for="historia-medica">Historia Médica y Factores de Riesgo:</label>
+            <textarea id="historia-medica" name="historia-medica"></textarea>
+
+            <button type="submit">Registrar Paciente</button>
+
+        </form>
+    </div>
+
+    
+    
+
+    <script src="script_registrar_paciente.js"></script> <!-- Incluye tu archivo JavaScript específico para esta página -->
+</body>
+</html>
