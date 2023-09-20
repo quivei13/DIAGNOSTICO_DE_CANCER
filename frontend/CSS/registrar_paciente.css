@@ -39,7 +39,7 @@ input[type="number"],
 input[type="date"],
 select,
 textarea,
-button[type="submit"],
+button[type="button"],
 input[type="file"] {
     width: 90%;
     padding: 10px;
@@ -49,7 +49,7 @@ input[type="file"] {
     font-size: 16px;
 }
 
-button[type="submit"] {
+button[type="button"] {
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -58,6 +58,15 @@ button[type="submit"] {
     cursor: pointer;
 }
 
+button#boton-volver {
+    background-color: #af000f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
 /* Estilos específicos para la página "Registrar paciente" */
 /* Añade estilos específicos aquí según tus preferencias */
 

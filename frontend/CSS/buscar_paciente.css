@@ -72,6 +72,18 @@ button.cerrar_sesion {
     
 }
 
+button#boton-volver {
+    background-color: #af000f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    position: relative;
+    right: 50%;
+}
+
 
 /*//////////////////////////////////////////////////////////////////////////////////////////////*/
 /* ESTILOS PAGINA BUSCAR PACIENTE  */
