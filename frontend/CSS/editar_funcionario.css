@@ -67,6 +67,15 @@ button#boton-volver {
     cursor: pointer;
     font-size: 16px;
 }
+
+button#boton-borrar {
+    background-color: #af000f;
+    color: #fff;
+}
+
+#buscador{
+    padding-bottom: 50px;
+}
 /* Estilos específicos para la página "Registrar paciente" */
 /* Añade estilos específicos aquí según tus preferencias */
 
@@ -97,10 +106,4 @@ th, td {
 .button-secondary {
     background-color: #ccc;
     color: #333;
-}
-
-.check {
-    display: block;
-    
-  
 }
