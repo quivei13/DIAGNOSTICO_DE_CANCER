@@ -1,4 +1,3 @@
-/* Estilos generales */
 body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
@@ -12,7 +11,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
     margin: 20px auto;
-    max-width: 800px; /* Ajusta el ancho máximo según tu diseño */
+    max-width: 800px;
 }
 
 h1 {
@@ -20,18 +19,13 @@ h1 {
     margin-bottom: 20px;
 }
 
-/* Estilos para formularios y etiquetas */
 form {
     margin: 0;
     padding: 0;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
+/*CAMPOS*/
+/*//////////////////////////////////////////////*/
 input[type="text"],
 input[type="email"],
 input[type="tel"],
@@ -49,8 +43,30 @@ input[type="file"] {
     font-size: 16px;
 }
 
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#buscador {
+    padding-bottom: 50px;
+}
+/*//////////////////////////////////////////////*/
+
+/*BOTONES*/
+/*//////////////////////////////////////////////*/
 button[type="button"] {
     background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button#limpiar-campos {
+    background-color: #c5a802;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -72,38 +88,6 @@ button#boton-borrar {
     background-color: #af000f;
     color: #fff;
 }
-/* Estilos específicos para la página "Registrar paciente" */
-/* Añade estilos específicos aquí según tus preferencias */
+/*//////////////////////////////////////////////*/
 
-/* Estilos para enlaces */
-a {
-    color: #007bff;
-    text-decoration: none;
-}
 
-a:hover {
-    text-decoration: underline;
-}
-
-/* Estilos para tablas (si es necesario) */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    border: 1px solid #ccc;
-}
-
-th, td {
-    padding: 10px;
-    border: 1px solid #ccc;
-}
-
-/* Estilos para botones secundarios (si es necesario) */
-.button-secondary {
-    background-color: #ccc;
-    color: #333;
-}
-
-#buscador {
-    padding-bottom: 50px;
-}

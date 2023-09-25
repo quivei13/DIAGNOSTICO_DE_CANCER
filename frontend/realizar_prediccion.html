@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicción de Cáncer</title>
+    <link rel="stylesheet" href="CSS/realizar_prediccion.css"> 
+</head>
+<body>
+    <div class="container">
+
+        <button id="boton-volver">Volver</button>
+
+        <h1>Predicción de Cáncer</h1>
+
+        <!-- Bloque de búsqueda -->
+        <div class="busqueda">
+            <label for="buscar-paciente">Buscar paciente:</label>
+            <input type="text" id="buscar-paciente" placeholder="Ingresa el Rut del paciente">
+        </div>
+
+        <!-- Contenedor de la página -->
+        <div class="pagina">
+            
+            <!-- Tabla de pacientes -->
+            <div class="columna-izquierda">
+                <div class="tabla-pacientes">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Rut</th>
+                                <th>Nombre</th>
+                                <th>Apellido Paterno</th>
+                                <th>Apellido Materno</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Aquí se generarán dinámicamente las filas de la tabla con datos de pacientes -->
+                            <!-- Ejemplo de fila de paciente:
+                            <tr>
+                                <td>Rut del paciente</td>
+                                <td>Nombre del paciente</td>
+                                <td>Apellido Paterno del paciente</td>
+                                <td>Apellido Materno del paciente</td>
+                            </tr>
+                            -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Bloque de resultados de la predicción -->
+            <div class="columna-derecha">
+                <div class="resultados">
+                    <h2>Resultados de la predicción</h2>
+                    <!-- Aquí se mostrarán los resultados de la predicción -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="JS/script_realizar_prediccion.js"></script> 
+</body>
+</html>

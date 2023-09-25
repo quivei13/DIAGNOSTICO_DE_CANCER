@@ -27,6 +27,15 @@ form {
     text-align: left;
 }
 
+#buscar-paciente-form, #filtros {
+    width: 20%;
+    position: relative;
+    left: 40%;
+    
+}
+
+/*CAMPOS*/
+/*///////////////////////////////////////////////////*/
 label {
     display: block;
     font-weight: bold;
@@ -39,7 +48,10 @@ input[type="password"] {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+/*/////////////////////////////////////////////////////*/
 
+/*BOTONES*/
+/*///////////////////////////////////////////////////*/
 button {
     background-color: #007BFF;
     color: #fff;
@@ -65,13 +77,6 @@ button.cerrar_sesion {
     right: 10px;
 }
 
-#buscar-paciente-form, #filtros {
-    width: 20%;
-    position: relative;
-    left: 40%;
-    
-}
-
 button#boton-volver {
     background-color: #af000f;
     color: #fff;
@@ -83,6 +88,7 @@ button#boton-volver {
     position: relative;
     right: 50%;
 }
+/*///////////////////////////////////////////////////*/
 
 
 /*//////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -92,11 +98,9 @@ table {
     width: 95%;
     max-width: 95%;
     border-collapse: collapse;
-    margin-top: 20px; /* Espacio entre la tabla y otros elementos */
-    /* overflow-x: auto; */
+    margin-top: 20px; 
 }
 
-/* Estilos para los encabezados de columna */
 tr.encabezado {
     background-color: #79a4ff;
 }
@@ -109,14 +113,13 @@ th {
     font-weight: bold;
     text-align: left;
     padding: 8px;
-    border: 1px solid #000000; /* Bordes alrededor de las celdas */
+    border: 1px solid #000000; 
 }
 
-/* Estilos para las celdas de datos */
 td {
     text-align: left;
     padding: 8px;
-    border: 1px solid #000000; /* Bordes alrededor de las celdas */
+    border: 1px solid #000000; 
 }
 
 td, th {

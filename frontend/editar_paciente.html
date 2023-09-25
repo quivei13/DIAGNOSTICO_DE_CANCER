@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar Paciente</title>
-    <link rel="stylesheet" href="CSS/editar_paciente.css"> <!-- Incluye tu archivo CSS principal -->
+    <link rel="stylesheet" href="CSS/editar_paciente.css">
 </head>
 <body>
     
@@ -19,7 +19,7 @@
         </div>
 
         <!-- Formulario de registro de paciente -->
-        <form id="registrar-paciente-form">
+        <form id="editar-paciente-form">
             <label for="rut">Rut:</label>
             <input type="text" id="rut" name="rut" placeholder="Ejemplo: 12345678-9" required>
 
@@ -50,9 +50,6 @@
             <label for="edad">Edad:</label>
             <input type="number" id="edad" name="edad" required>
 
-            <label for="cancer-identificado">Cáncer Identificado:</label>
-            <input type="checkbox" id="cancer-identificado" name="cancer-identificado">
-
             <label for="diagnostico-inicial">Diagnóstico Inicial:</label>
             <textarea id="diagnostico-inicial" name="diagnostico-inicial"></textarea>
 
@@ -73,6 +70,8 @@
 
             <button type="button" id="boton-actualizar">Actualizar Paciente</button>
             <button type="button" id="boton-borrar">Borrar Paciente</button>
+            <button type="button" id="limpiar-campos">Limpiar Campos</button>
+
 
             
 
