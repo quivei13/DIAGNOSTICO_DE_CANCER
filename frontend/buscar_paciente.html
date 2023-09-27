@@ -16,19 +16,37 @@
         <form id="buscar-paciente-form">
             <label for="rut">Buscar por Rut:</label>
             <input type="text" id="rut" name="rut" placeholder="Ingrese el Rut del paciente" required>
-            <button type="submit">Buscar</button>
+            <button type="submit">Buscar por Rut</button>
         </form>
 
         <!-- Filtros de datos -->
         <div id="filtros">
-            <label for="filtro-nombres">Filtrar por Nombres:</label>
-            <input type="text" id="filtro-nombres" name="filtro-nombres">
-            <label for="filtro-apellido-paterno">Filtrar por Apellido Paterno:</label>
-            <input type="text" id="filtro-apellido-paterno" name="filtro-apellido-paterno">
-            <label for="filtro-apellido-materno">Filtrar por Apellido Materno:</label>
-            <input type="text" id="filtro-apellido-materno" name="filtro-apellido-materno">
-            <label for="filtro-cancer-identificado">Filtrar por Cáncer Identificado:</label>
-            <input type="text" id="filtro-cancer-identificado" name="filtro-cancer-identificado">
+            <div>
+                <label for="filtro-nombres">Filtrar por Nombre/s:</label>
+                <input type="checkbox" class="habilitar-input" data-target="filtro-nombres">
+                <input type="text" id="filtro-nombres" name="filtro-nombres" disabled>
+            </div>
+            <div>
+                <label for="filtro-apellido-paterno">Filtrar por Apellido Paterno:</label>
+                <input type="checkbox" class="habilitar-input" data-target="filtro-apellido-paterno">
+                <input type="text" id="filtro-apellido-paterno" name="filtro-apellido-paterno" disabled>
+            </div>
+            <div>
+                <label for="filtro-apellido-materno">Filtrar por Apellido Materno:</label>
+                <input type="checkbox" class="habilitar-input" data-target="filtro-apellido-materno"> 
+                <input type="text" id="filtro-apellido-materno" name="filtro-apellido-materno" disabled>
+            </div>
+            <div>
+                <label for="filtro-cancer-identificado">Filtrar por Cáncer Identificado:</label>
+                <input type="checkbox" class="habilitar-input" data-target="filtro-cancer-identificado">
+                <input type="text" id="filtro-cancer-identificado" name="filtro-cancer-identificado" disabled>
+            </div>
+            <div>
+                <label for="filtro-fecha-nacimiento">Filtrar por Fecha de nacimiento:</label>
+                <input type="checkbox" class="habilitar-input" data-target="filtro-fecha-nacimiento">
+                <input type="date" id="filtro-fecha-nacimiento" name="filtro-fecha-nacimiento" disabled>
+            </div>
+            <button type="submit">Buscar por filtros</button>
         </div>
 
         <!-- Tabla de pacientes -->
@@ -36,7 +54,7 @@
             <thead>
                 <tr class="encabezado">
                     <th>Rut</th>
-                    <th>Nombres</th>
+                    <th>Nombre/s</th>
                     <th>Apellido Paterno</th>
                     <th>Apellido Materno</th>
                     <th>Género</th>
@@ -79,6 +97,12 @@
                 <!-- Aquí se llenará la tabla con datos de pacientes -->
             </tbody>
         </table>
+
+        <div> 
+            <button class="cerrar_sesion">Cerrar Sesión</button>
+            <label for="" style="position: absolute; top: 20px; right: 180px;">Cuenta 1</label>
+        </div>
+        
     </div>
 
     <script src="JS/script_buscar_paciente.js"></script> 

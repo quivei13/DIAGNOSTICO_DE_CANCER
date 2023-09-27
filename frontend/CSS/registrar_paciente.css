@@ -85,4 +85,16 @@ button#boton-volver {
     cursor: pointer;
     font-size: 16px;
 }
+
+button.cerrar_sesion {
+    background-color: #d81717;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
 /*////////////////////////////////////*/
