@@ -17,20 +17,90 @@ botonVolver.addEventListener("click", function () {
 // Selecciona el botón "Registrar Paciente" por su ID
 const botonRegistrar = document.getElementById("boton-registrar");
 
-// Agrega un evento de clic al botón "Registrar Paciente"
+// Función para enviar los datos del formulario al servidor
+function enviarDatosAlServidor() {
+    // Obtén los valores ingresados por el usuario desde los campos del formulario
+    const rut = document.getElementById("rut").value;
+    const nombre = document.getElementById("nombre").value;
+    const apellido_paterno = document.getElementById("apellido-paterno").value;
+    const apellido_materno = document.getElementById("apellido-materno").value;
+    const genero = document.getElementById("genero").value;
+    const fecha_de_nacimiento = document.getElementById("fecha-nacimiento").value;
+    const correo_electronico = document.getElementById("mail").value;
+    const telefono = document.getElementById("telefono").value;
+    const edad = document.getElementById("edad").value;
+    const cancer = "desconocido";
+    const diagnostico_inicial = document.getElementById("diagnostico-inicial").value;
+    const radiografias = document.getElementById("radiografias").value;
+    const condiciones_fisicas = document.getElementById("condiciones-fisicas").value;
+    const condiciones_ambientales = document.getElementById("condiciones-ambientales").value;
+    const datos_gen_mol = document.getElementById("datos-geneticos").value;
+    const historia_medica = document.getElementById("historia-medica").value;
+    // Obtén los valores de los demás campos aquí
+
+    // Crea un objeto con los datos del paciente
+    const paciente = {
+        rut,
+        nombre,
+        apellido_paterno,
+        apellido_materno,
+        genero,
+        fecha_de_nacimiento,
+        correo_electronico,
+        telefono,
+        edad,
+        cancer,
+        diagnostico_inicial,
+        radiografias,
+        condiciones_fisicas,
+        condiciones_ambientales,
+        datos_gen_mol,
+        historia_medica
+    };
+
+    // Realiza una solicitud POST al servidor para registrar al paciente
+    fetch('/api/pacientes/registrar-paciente', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(paciente),
+    })
+        .then(function (response) {
+            if (response.status === 201) {
+                // El paciente se registró con éxito
+                mostrarMensajeConfirmacion("Paciente registrado exitosamente.");
+                // Limpia los campos del formulario
+                // limpiarCampos();
+            } else {
+                mostrarMensajeError("Error al registrar paciente.");
+            }
+        })
+        .catch(function (error) {
+            console.error('Error al registrar paciente:', error);
+            mostrarMensajeError("Error al registrar paciente.");
+        });
+}
+
+// Agrega un evento de clic al botón "Registrar Paciente" para enviar los datos al servidor
 botonRegistrar.addEventListener("click", function () {
-    // Aquí puedes realizar la lógica de envío del formulario, como enviar datos al servidor o realizar validaciones.
-
-    // Si el envío se realiza con éxito, muestra el mensaje de confirmación
-    mostrarMensajeConfirmacion();
-
-    
+    enviarDatosAlServidor();
 });
 
-// Función para mostrar el mensaje de confirmación (igual que antes)
-function mostrarMensajeConfirmacion() {
-    
+// Función para mostrar un mensaje de confirmación
+function mostrarMensajeConfirmacion(mensaje) {
+    // Muestra el mensaje en la página (puedes implementar esto)
+    alert(mensaje);
 }
+
+// Función para mostrar un mensaje de error
+function mostrarMensajeError(mensaje) {
+    // Muestra el mensaje de error en la página (puedes implementar esto)
+    alert(mensaje);
+}
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -57,3 +127,8 @@ botonLimpiarCampos.addEventListener("click", function () {
     }
 });
 ////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+

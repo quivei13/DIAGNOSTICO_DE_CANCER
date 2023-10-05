@@ -14,8 +14,8 @@ router.get('/', (req, res, next) => {
   });
 });
 
-// Ruta para agregar un nuevo paciente
-router.post('/', (req, res, next) => {
+// Ruta para registrar un nuevo paciente
+router.post('/registrar-paciente', (req, res, next) => {
   const { rut, nombre, apellido_paterno, apellido_materno, genero, fecha_de_nacimiento, correo_electronico, telefono, edad, cancer, diagnostico_inicial, radiografias, condiciones_fisicas, condiciones_ambientales, datos_gen_mol, historia_medica } = req.body;
 
   // Verifica que los campos requeridos estén presentes
@@ -24,11 +24,11 @@ router.post('/', (req, res, next) => {
     return res.status(400).json({ error: 'Faltan campos obligatorios' });
   }
 
-  db.query('INSERT INTO pacientes (rut, nombre, apellido_paterno, apellido_materno, genero, fecha_de_nacimiento, correo_electronico, telefono, edad, cancer, diagnostico_inicial, radiografias, condiciones_fisicas, condiciones_ambientales, datos_gen_mol, historia_medica) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [rut, nombre, apellido_paterno], (err, results) => {
+  db.query('INSERT INTO paciente (rut, nombre, apellido_paterno, apellido_materno, genero, fecha_de_nacimiento, correo_electronico, telefono, edad, cancer, diagnostico_inicial, radiografias, condiciones_fisicas, condiciones_ambientales, datos_gen_mol, historia_medica) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [rut, nombre, apellido_paterno, apellido_materno, genero, fecha_de_nacimiento, correo_electronico, telefono, edad, cancer, diagnostico_inicial, radiografias, condiciones_fisicas, condiciones_ambientales, datos_gen_mol, historia_medica], (err, results) => {
     if (err) {
       return next(err);
     }
-    res.status(201).json({ message: 'Paciente agregado exitosamente' });
+    res.status(201).json({ message: 'Paciente registrado exitosamente' });
   });
 });
 
@@ -38,7 +38,7 @@ router.post('/', (req, res, next) => {
 router.get('/:rut', (req, res, next) => {
   const pacienteRUT = req.params.rut;
 
-  db.query('SELECT * FROM pacientes WHERE rut = ?', [pacienteRUT], (err, results) => {
+  db.query('SELECT * FROM paciente WHERE rut = ?', [pacienteRUT], (err, results) => {
     if (err) {
       return next(err);
     }
@@ -60,7 +60,7 @@ router.put('/:rut', (req, res, next) => {
     return res.status(400).json({ error: 'Faltan campos obligatorios' });
   }
 
-  db.query('UPDATE pacientes SET rut = ?, nombre = ?, apellido_paterno = ? apellido_materno = ?, genero = ?, fecha_de_nacimiento = ?, correo_electronico = ?, telefono = ?, edad = ?, cancer = ?, diagnostico_inicial = ?, radiografias = ?, condiciones_fisicas = ?, condiciones_ambientales = ?, datos_gen_mol = ?, historia_medica = ?', [pacienteRUT, nombre, apellido_paterno, apellido_materno, genero, fecha_de_nacimiento, correo_electronico, telefono, edad, cancer, diagnostico_inicial, radiografias, condiciones_fisicas, condiciones_ambientales, datos_gen_mol, historia_medica], (err, results) => {
+  db.query('UPDATE paciente SET rut = ?, nombre = ?, apellido_paterno = ? apellido_materno = ?, genero = ?, fecha_de_nacimiento = ?, correo_electronico = ?, telefono = ?, edad = ?, cancer = ?, diagnostico_inicial = ?, radiografias = ?, condiciones_fisicas = ?, condiciones_ambientales = ?, datos_gen_mol = ?, historia_medica = ?', [pacienteRUT, nombre, apellido_paterno, apellido_materno, genero, fecha_de_nacimiento, correo_electronico, telefono, edad, cancer, diagnostico_inicial, radiografias, condiciones_fisicas, condiciones_ambientales, datos_gen_mol, historia_medica], (err, results) => {
     if (err) {
       return next(err);
     }
@@ -73,7 +73,7 @@ router.put('/:rut', (req, res, next) => {
 router.delete('/:rut', (req, res, next) => {
   const pacienteRUT = req.params.rut;
 
-  db.query('DELETE FROM pacientes WHERE rut = ?', [pacienteRUT], (err, results) => {
+  db.query('DELETE FROM paciente WHERE rut = ?', [pacienteRUT], (err, results) => {
     if (err) {
       return next(err);
     }
