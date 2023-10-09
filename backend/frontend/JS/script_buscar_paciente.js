@@ -59,12 +59,25 @@ function cargarPacientes() {
             <td>${paciente.edad}</td>
             <td>${paciente.cancer}</td>
             <td>${paciente.diagnostico_inicial}</td>
-            <td>${paciente.radiografias}</td>
+            <td></td>
             <td>${paciente.condiciones_fisicas}</td>
             <td>${paciente.condiciones_ambientales}</td>
             <td>${paciente.datos_gen_mol}</td>
             <td>${paciente.historia_medica}</td>
           `;
+
+          // Obtén la celda de imágenes (la celda número 11)
+          var celdaImagenes = fila.getElementsByTagName('td')[11];
+
+          // Crea un elemento de imagen para cada imagen de radiografía y agrégalo a la celda
+          paciente.radiografias.split(',').forEach(function (imagen) {
+            var imagenRadiografia = document.createElement('img');
+            // Establece la ruta de la imagen
+            imagenRadiografia.src = `/imagenes/${imagen.trim()}`; // Asegúrate de eliminar espacios en blanco alrededor del nombre del archivo
+            // Agrega la imagen a la celda
+            celdaImagenes.appendChild(imagenRadiografia);
+          });
+
           // Agrega la fila a la tabla
           tablaPacientes.appendChild(fila);
         });

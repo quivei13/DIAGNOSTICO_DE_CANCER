@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 
+
 // Ruta para obtener todos los pacientes
 router.get('/', (req, res, next) => {
   db.query('SELECT * FROM paciente', (err, results) => {
@@ -80,6 +81,9 @@ router.delete('/:rut', (req, res, next) => {
     res.json({ message: 'Paciente eliminado exitosamente' });
   });
 });
+
+
+
 
 
 

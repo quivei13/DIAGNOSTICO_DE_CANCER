@@ -51,7 +51,10 @@
             <textarea id="diagnostico-inicial" name="diagnostico-inicial"></textarea>
 
             <label for="radiografias">Radiografías:</label>
-            <input type="file" id="radiografias" name="radiografias" accept="image/*" multiple>
+            <input type="file" id="radiografia-imagen-input" name="radiografia-imagen-input" accept="image/*" style="display: none;">
+            <button type="button" id="cargar-imagen">Cargar Imagen seleccionada</button>
+            <img src="" alt="Vista previa de la imagen" id="imagen-previa" class="imagen_seleccionada">
+            <input type="text" id="radiografias" name="radiografias" readonly>
 
             <label for="condiciones-fisicas">Condiciones Físicas:</label>
             <textarea id="condiciones-fisicas" name="condiciones-fisicas"></textarea>

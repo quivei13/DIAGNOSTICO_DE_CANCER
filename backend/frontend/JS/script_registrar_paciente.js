@@ -85,6 +85,9 @@ function enviarDatosAlServidor() {
 // Agrega un evento de clic al botón "Registrar Paciente" para enviar los datos al servidor
 botonRegistrar.addEventListener("click", function () {
     enviarDatosAlServidor();
+
+
+
 });
 
 // Función para mostrar un mensaje de confirmación
@@ -98,6 +101,9 @@ function mostrarMensajeError(mensaje) {
     // Muestra el mensaje de error en la página (puedes implementar esto)
     alert(mensaje);
 }
+
+
+
 
 
 
@@ -129,6 +135,36 @@ botonLimpiarCampos.addEventListener("click", function () {
 ////////////////////////////////////////////////////////////////////////////////////////
 
 
+//BOTON CARGAR IMAGEN
+////////////////////////////////////////////////////////////////////////////////////////
+// Selecciona el input de tipo file y el botón para cargar la imagen
+const inputRadiografiaImagen = document.getElementById("radiografia-imagen-input");
+const botonCargarImagen = document.getElementById("cargar-imagen");
+const imagenPrevia = document.getElementById("imagen-previa");
+const inputRadiografias = document.getElementById("radiografias");
 
+// Agrega un evento de clic al botón "Cargar Imagen seleccionada"
+botonCargarImagen.addEventListener("click", function () {
+  // Simula un clic en el input de tipo file para abrir el selector de archivos
+  inputRadiografiaImagen.click();
+});
 
+// Escucha cambios en el input de tipo file
+inputRadiografiaImagen.addEventListener("change", function () {
+  const archivoSeleccionado = inputRadiografiaImagen.files[0];
+
+  if (archivoSeleccionado) {
+    // Muestra la vista previa de la imagen
+    imagenPrevia.style.display = "block";
+    inputRadiografias.value = archivoSeleccionado.name;
+
+    // Lee el contenido del archivo y muestra la vista previa
+    const lector = new FileReader();
+    lector.onload = function (e) {
+      imagenPrevia.src = e.target.result;
+    };
+    lector.readAsDataURL(archivoSeleccionado);
+  }
+});
+////////////////////////////////////////////////////////////////////////////////////////
 
