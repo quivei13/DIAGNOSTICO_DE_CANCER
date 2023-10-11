@@ -14,8 +14,8 @@
 
         <h1>Editar Paciente</h1>
         <div id="buscador">
-            <input type="text" id="rut" name="rut" placeholder="Ingresar rut a buscar (12345678-9)" required>
-            <button type="button" style="width: 20%;">Buscar</button>
+            <input type="text" id="buscar-rut" name="buscar-rut" placeholder="Ingresar rut a buscar (12345678-9)" required>
+            <button id="boton-buscar" type="button" style="width: 20%;">Buscar</button>
         </div>
 
         <!-- Formulario de registro de paciente -->
@@ -55,7 +55,7 @@
             <textarea id="diagnostico-inicial" name="diagnostico-inicial"></textarea>
 
             <label for="radiografias">Radiografías:</label>
-            <input type="file" id="radiografias" name="radiografias" accept="image/*" multiple>
+            <input type="text" id="radiografias" name="radiografias" readonly>
 
             <label for="condiciones-fisicas">Condiciones Físicas:</label>
             <textarea id="condiciones-fisicas" name="condiciones-fisicas"></textarea>

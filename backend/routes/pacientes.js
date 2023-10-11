@@ -61,7 +61,7 @@ router.put('/:rut', (req, res, next) => {
     return res.status(400).json({ error: 'Faltan campos obligatorios' });
   }
 
-  db.query('UPDATE paciente SET rut = ?, nombre = ?, apellido_paterno = ? apellido_materno = ?, genero = ?, fecha_de_nacimiento = ?, correo_electronico = ?, telefono = ?, edad = ?, cancer = ?, diagnostico_inicial = ?, radiografias = ?, condiciones_fisicas = ?, condiciones_ambientales = ?, datos_gen_mol = ?, historia_medica = ?', [pacienteRUT, nombre, apellido_paterno, apellido_materno, genero, fecha_de_nacimiento, correo_electronico, telefono, edad, cancer, diagnostico_inicial, radiografias, condiciones_fisicas, condiciones_ambientales, datos_gen_mol, historia_medica], (err, results) => {
+  db.query('UPDATE paciente SET rut = ?, nombre = ?, apellido_paterno = ?, apellido_materno = ?, genero = ?, fecha_de_nacimiento = ?, correo_electronico = ?, telefono = ?, edad = ?, cancer = ?, diagnostico_inicial = ?, radiografias = ?, condiciones_fisicas = ?, condiciones_ambientales = ?, datos_gen_mol = ?, historia_medica = ?', [pacienteRUT, nombre, apellido_paterno, apellido_materno, genero, fecha_de_nacimiento, correo_electronico, telefono, edad, cancer, diagnostico_inicial, radiografias, condiciones_fisicas, condiciones_ambientales, datos_gen_mol, historia_medica], (err, results) => {
     if (err) {
       return next(err);
     }
