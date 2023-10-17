@@ -15,9 +15,11 @@ app.use(express.static(path.join(__dirname, 'frontend')));
 // Rutas
 const pacientesRouter = require('./routes/pacientes'); // Crea este archivo y define tus rutas
 const experienciaRouter = require('./routes/experiencia'); // Nueva ruta para la experiencia
+const funcionarioRouter = require('./routes/funcionario');
 
 app.use('/api/pacientes', pacientesRouter);
 app.use('/api/experiencia', experienciaRouter); // Monta las rutas de experiencia en '/api/experiencia'
+app.use('/api/funcionario', funcionarioRouter);
 
 
 // Manejo de errores

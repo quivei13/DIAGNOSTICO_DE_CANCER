@@ -33,3 +33,76 @@ botonLimpiarCampos.addEventListener("click", function () {
     }
 });
 ////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+//BOTON REGISTRAR FUNCIONARIO
+////////////////////////////////////////////////////////////////////////////////////////
+// Selecciona el botón "Registrar funcionario" por su ID
+const botonRegistrarFuncionario = document.getElementById("boton-registrar");
+
+// Agrega un evento de clic al botón "Registrar funcionario"
+botonRegistrarFuncionario.addEventListener("click", function () {
+    // Obtén los valores de los campos del formulario
+    const rut = document.getElementById("rut").value;
+    const nombre = document.getElementById("nombres").value;
+    const apellido_paterno = document.getElementById("apellido-paterno").value;
+    const apellido_materno = document.getElementById("apellido-materno").value;
+    const genero = document.getElementById("genero").value;
+    const fecha_de_nacimiento = document.getElementById("fecha-nacimiento").value;
+    const correo_electronico = document.getElementById("mail").value;
+    const telefono = document.getElementById("telefono").value;
+    const edad = document.getElementById("edad").value;
+    const contraseña = document.getElementById("contraseña").value;
+    const area_profesion = document.getElementById("area/profesion").value;
+
+    // Obtén los valores de los checkboxes
+    const leer = document.getElementById("leer").checked;
+    const registrar = document.getElementById("registrar").checked;
+    const borrar = document.getElementById("borrar").checked;
+    const actualizar = document.getElementById("actualizar").checked;
+
+    // Crea un objeto con los datos del funcionario
+    const funcionario = {
+        rut,
+        nombre,
+        apellido_paterno,
+        apellido_materno,
+        genero,
+        fecha_de_nacimiento,
+        correo_electronico,
+        telefono,
+        edad,
+        contraseña,
+        area_profesion,
+        leer,
+        registrar,
+        borrar,
+        actualizar
+    };
+
+    // Realiza una solicitud HTTP POST al servidor para registrar el funcionario
+    fetch('/api/funcionario/registrar-funcionario', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(funcionario),
+    })
+        .then(response => response.json())
+        .then(data => {
+            // Maneja la respuesta del servidor
+            if (data.message) {
+                alert(data.message);
+                // Limpia los campos del formulario después de un registro exitoso
+                document.getElementById("registrar-funcionario-form").reset();
+            } else {
+                alert('Hubo un error al registrar el funcionario.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+});
+////////////////////////////////////////////////////////////////////////////////////////
