@@ -44,7 +44,7 @@ function buscarPacientePorRut() {
     const rutABuscar = document.getElementById("buscar-rut").value;
 
     // Realiza una solicitud GET al servidor para obtener los datos del paciente por RUT
-    fetch(`/api/pacientes/${rutABuscar}`)
+    fetch(`/api/pacientes/get/${rutABuscar}`)
         .then(function (response) {
             if (response.status === 200) {
                 return response.json();
@@ -84,6 +84,7 @@ function cargarDatosDelPaciente(paciente) {
     document.getElementById("mail").value = paciente.correo_electronico;
     document.getElementById("telefono").value = paciente.telefono;
     document.getElementById("edad").value = paciente.edad;
+    document.getElementById("cancer").value = paciente.cancer;
     document.getElementById("diagnostico-inicial").value = paciente.diagnostico_inicial;
     document.getElementById("radiografias").value = paciente.radiografias;
     document.getElementById("condiciones-fisicas").value = paciente.condiciones_fisicas;
@@ -112,7 +113,7 @@ function actualizarPaciente() {
     const correo_electronico = document.getElementById("mail").value;
     const telefono = document.getElementById("telefono").value;
     const edad = document.getElementById("edad").value;
-    const cancer = "desconocido"
+    const cancer = document.getElementById("cancer").value;
     const diagnostico_inicial = document.getElementById("diagnostico-inicial").value;
     const radiografias = document.getElementById("radiografias").value;
     const condiciones_fisicas = document.getElementById("condiciones-fisicas").value;
@@ -213,6 +214,7 @@ function limpiarCampos() {
     document.getElementById("mail").value = "";
     document.getElementById("telefono").value = "";
     document.getElementById("edad").value = "";
+    document.getElementById("cancer").value = "";
     document.getElementById("diagnostico-inicial").value = "";
     document.getElementById("radiografias").value = "";
     document.getElementById("condiciones-fisicas").value = "";
