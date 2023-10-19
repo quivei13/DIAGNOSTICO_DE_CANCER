@@ -68,6 +68,27 @@ router.post('/registrar-funcionario', (req, res, next) => {
   });
 //
 
-  
+
+
+// Ruta para buscar un funcionario por RUT
+router.get('/:rut', (req, res, next) => {
+  const funcionarioRUT = req.params.rut;
+
+  // Realiza una consulta SQL para obtener el funcionario por su RUT
+  db.query('SELECT * FROM funcionario WHERE rut = ?', [funcionarioRUT], (err, results) => {
+    if (err) {
+      return next(err);
+    }
+
+    if (results.length === 0) {
+      // Si no se encontró ningún funcionario con ese RUT, envía una respuesta con un mensaje de error
+      res.status(404).json({ error: 'Funcionario no encontrado' });
+    } else {
+      // Si se encontró el funcionario, envía los datos del funcionario como respuesta
+      res.json(results);
+    }
+  });
+});
+
 
 module.exports = router;
