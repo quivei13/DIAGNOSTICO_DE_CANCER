@@ -35,6 +35,8 @@ botonLimpiarCampos.addEventListener("click", function () {
 ////////////////////////////////////////////////////////////////////////////////////////
 
 
+//BOTON BUSCAR
+////////////////////////////////////////////////////////////////////////////////////////
 // Agrega un evento de clic al botón "Buscar"
 const botonBuscar = document.getElementById("boton-buscar");
 botonBuscar.addEventListener("click", buscarPacientePorRut);
@@ -97,7 +99,12 @@ function cargarDatosDelPaciente(paciente) {
     document.getElementById("boton-actualizar").disabled = false;
     document.getElementById("boton-borrar").disabled = false;
 }
+////////////////////////////////////////////////////////////////////////////////////////
 
+
+
+//BOTON ACTUALIZAR
+////////////////////////////////////////////////////////////////////////////////////////
 // Agrega un evento de clic al botón "Actualizar Paciente"
 const botonActualizar = document.getElementById("boton-actualizar");
 botonActualizar.addEventListener("click", actualizarPaciente);
@@ -166,7 +173,12 @@ function actualizarPaciente() {
             mostrarMensajeError("Error al actualizar paciente.");
         });
 }
+////////////////////////////////////////////////////////////////////////////////////////
 
+
+
+//BOTON BORRAR
+////////////////////////////////////////////////////////////////////////////////////////
 // Agrega un evento de clic al botón "Borrar Paciente"
 const botonBorrar = document.getElementById("boton-borrar");
 botonBorrar.addEventListener("click", borrarPaciente);
@@ -192,6 +204,7 @@ function borrarPaciente() {
             mostrarMensajeError("Error al borrar paciente.");
         });
 }
+////////////////////////////////////////////////////////////////////////////////////////
 
 // Función para mostrar un mensaje de confirmación
 function mostrarMensajeConfirmacion(mensaje) {

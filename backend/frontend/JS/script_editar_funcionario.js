@@ -91,6 +91,9 @@ botonBuscar.addEventListener("click", function () {
 ////////////////////////////////////////////////////////////////////////////////////////
 
 
+
+//BOTON ACTUALIZAR
+////////////////////////////////////////////////////////////////////////////////////////
 // Agrega un evento de clic al botón "Actualizar funcionario"
 const botonActualizar = document.getElementById("boton-actualizar");
 botonActualizar.addEventListener("click", function () {
@@ -148,6 +151,31 @@ botonActualizar.addEventListener("click", function () {
     })
     .catch((error) => {
       console.error("Error al actualizar el funcionario:", error);
+    });
+});
+////////////////////////////////////////////////////////////////////////////////////////
+
+
+// Agrega un evento de clic al botón "Borrar Funcionario"
+const botonBorrar = document.getElementById("boton-borrar");
+botonBorrar.addEventListener("click", function () {
+  // Obtén el valor del campo "rut"
+  const rut = document.querySelector("#rut").value;
+
+  // Realiza una solicitud AJAX para borrar el funcionario en el servidor
+  const url = `/api/funcionario/${rut}`; // Reemplaza por la URL de borrado correcta
+  fetch(url, {
+    method: "DELETE",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // Procesa la respuesta del servidor, por ejemplo, muestra un mensaje de éxito o error.
+      if (data.message) {
+        alert(data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error al borrar el funcionario:", error);
     });
 });
 
