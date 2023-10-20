@@ -45,7 +45,7 @@ router.post('/registrar-funcionario', (req, res, next) => {
       return res.status(400).json({ error: 'Faltan campos obligatorios' });
     }
   
-    db.query('UPDATE funcionario SET rut = ?, nombre = ?, apellido_paterno = ?, apellido_materno = ?, genero = ?, fecha_de_nacimiento = ?, correo_electronico = ?, telefono = ?, edad = ?, contraseña = ?, area_profesion = ?, leer = ?, registrar = ?, borrar = ?, actualizar = ? WHERE rut = ?', [rut, nombre, apellido_paterno, apellido_materno, genero, fecha_de_nacimiento, correo_electronico, telefono, edad, contraseña, area_profesion, leer, registrar, borrar, actualizar, funcionarioRUT], (err, results) => {
+    db.query('UPDATE funcionario SET nombre = ?, apellido_paterno = ?, apellido_materno = ?, genero = ?, fecha_de_nacimiento = ?, correo_electronico = ?, telefono = ?, edad = ?, contraseña = ?, area_profesion = ?, leer = ?, registrar = ?, borrar = ?, actualizar = ? WHERE rut = ?', [nombre, apellido_paterno, apellido_materno, genero, fecha_de_nacimiento, correo_electronico, telefono, edad, contraseña, area_profesion, leer, registrar, borrar, actualizar, funcionarioRUT], (err, results) => {
       if (err) {
         return next(err);
       }

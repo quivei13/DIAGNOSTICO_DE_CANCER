@@ -53,7 +53,7 @@ botonBuscar.addEventListener("click", function () {
       if (data && data.length > 0) {
         // Completa los campos del formulario con los datos del funcionario
         const funcionario = data[0]; // Suponiendo que se devuelve un solo registro
-        document.querySelector("#nombres").value = funcionario.nombre;
+        document.querySelector("#nombre").value = funcionario.nombre;
         document.querySelector("#apellido-paterno").value = funcionario.apellido_paterno;
         document.querySelector("#apellido-materno").value = funcionario.apellido_materno;
         document.querySelector("#genero").value = funcionario.genero;
@@ -89,4 +89,67 @@ botonBuscar.addEventListener("click", function () {
     });
 });
 ////////////////////////////////////////////////////////////////////////////////////////
+
+
+// Agrega un evento de clic al botón "Actualizar funcionario"
+const botonActualizar = document.getElementById("boton-actualizar");
+botonActualizar.addEventListener("click", function () {
+  // Obtén los valores de los campos del formulario
+  const rut = document.querySelector("#rut").value;
+  const nombre = document.querySelector("#nombre").value;
+  const apellido_paterno = document.querySelector("#apellido-paterno").value;
+  const apellido_materno = document.querySelector("#apellido-materno").value;
+  const genero = document.querySelector("#genero").value;
+  const fecha_de_nacimiento = document.querySelector("#fecha-nacimiento").value;
+  const correo_electronico = document.querySelector("#mail").value;
+  const telefono = document.querySelector("#telefono").value;
+  const edad = document.querySelector("#edad").value;
+  const contraseña = document.querySelector("#contraseña").value;
+  const area_profesion = document.querySelector("#area-profesion").value;
+  const leer = document.querySelector("#leer").checked;
+  const registrar = document.querySelector("#registrar").checked;
+  const borrar = document.querySelector("#borrar").checked;
+  const actualizar = document.querySelector("#actualizar").checked;
+
+  // Construye un objeto con los datos del formulario
+  const funcionarioData = {
+    rut,
+    nombre,
+    apellido_paterno,
+    apellido_materno,
+    genero,
+    fecha_de_nacimiento,
+    correo_electronico,
+    telefono,
+    edad,
+    contraseña,
+    area_profesion,
+    leer,
+    registrar,
+    borrar,
+    actualizar,
+  };
+
+  // Realiza una solicitud AJAX para actualizar el funcionario en el servidor
+  const url = `/api/funcionario/${rut}`; // Reemplaza por la URL de actualización correcta
+  fetch(url, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(funcionarioData),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // Procesa la respuesta del servidor, por ejemplo, muestra un mensaje de éxito o error.
+      if (data.message) {
+        alert(data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error al actualizar el funcionario:", error);
+    });
+});
+
+
 
