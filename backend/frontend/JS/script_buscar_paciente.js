@@ -47,13 +47,18 @@ function cargarPacientes() {
           // Crea una nueva fila en la tabla para cada paciente
           var fila = document.createElement('tr');
           // Agrega las celdas de datos
+
+          // Arreglar formato de fecha de nacimiento
+          const fechaNacimiento = paciente.fecha_de_nacimiento;;
+          const fechaNacimientoObj = new Date(fechaNacimiento);
+          
           fila.innerHTML = `
             <td>${paciente.rut}</td>
             <td>${paciente.nombre}</td>
             <td>${paciente.apellido_paterno}</td>
             <td>${paciente.apellido_materno}</td>
             <td>${paciente.genero}</td>
-            <td>${paciente.fecha_de_nacimiento}</td>
+            <td>${fechaNacimientoObj.toISOString().split('T')[0]}</td>
             <td>${paciente.correo_electronico}</td>
             <td>${paciente.telefono}</td>
             <td>${paciente.edad}</td>
@@ -73,10 +78,13 @@ function cargarPacientes() {
           paciente.radiografias.split(',').forEach(function (imagen) {
             var imagenRadiografia = document.createElement('img');
             // Establece la ruta de la imagen
-            imagenRadiografia.src = `/imagenes/${imagen.trim()}`; // Asegúrate de eliminar espacios en blanco alrededor del nombre del archivo
+            imagenRadiografia.src = `/../imagenes/${imagen.trim()}`; // Asegúrate de eliminar espacios en blanco alrededor del nombre del archivo
             // Agrega la imagen a la celda
             celdaImagenes.appendChild(imagenRadiografia);
           });
+
+          
+
 
           // Agrega la fila a la tabla
           tablaPacientes.appendChild(fila);

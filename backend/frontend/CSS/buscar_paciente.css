@@ -6,7 +6,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 150vh;
 }
 
 .container {
@@ -15,7 +15,12 @@ body {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     text-align: center;
-    display: inline-block;
+    display: flex;
+    flex-direction: column; /* Asegura que los elementos internos se apilen verticalmente */
+    align-items: center;
+    justify-content: center;
+    height: 150vh; /* Establece la altura del contenedor principal */
+    overflow: auto; /* Agrega barras de desplazamiento si el contenido se desborda */
 }
 
 form {
@@ -27,12 +32,23 @@ form {
     text-align: left;
 }
 
-#buscar-paciente-form, #filtros {
-    width: 20%;
+#buscar-paciente-form {
+    width: 80%;
     position: relative;
-    left: 40%;
-    
+    margin: 0 auto;
 }
+
+#filtros {
+    width: 40%;
+    position: relative;
+    margin: 0 auto;
+}
+
+img {
+    max-width: 100px;
+    height: auto;
+  }
+  
 
 /*CAMPOS*/
 /*///////////////////////////////////////////////////*/
@@ -94,6 +110,13 @@ button#boton-volver {
 /*//////////////////////////////////////////////////////////////////////////////////////////////*/
 /* ESTILOS PAGINA BUSCAR PACIENTE  */
 /* Estilos para la tabla */
+.table-container {
+    max-height: 600px; /* Altura máxima de la tabla antes de que aparezca la barra de desplazamiento */
+    overflow: auto;   /* Agrega una barra de desplazamiento si la tabla excede la altura máxima */
+    margin: 0 auto;   /* Centra horizontalmente el contenido */
+    width: 95%;
+}
+
 table {
     width: 95%;
     max-width: 95%;
@@ -114,6 +137,8 @@ th {
     text-align: left;
     padding: 8px;
     border: 1px solid #000000; 
+    position: sticky; top: 0; 
+    background-color: #79a4ff;
 }
 
 td {
@@ -125,6 +150,7 @@ td {
 td, th {
     font-size: 15px;
 }
+
 
 tbody#tabla-pacientes {
     background-color: #fff;
