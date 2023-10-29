@@ -100,3 +100,78 @@ function cargarPacientes() {
   });
   
 ////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+//BOTON BUSCAR POR RUT
+////////////////////////////////////////////////////////////////////////////////////////
+document.addEventListener("DOMContentLoaded", function () {
+  cargarPacientes();
+
+  // Obtén el formulario y agrega un controlador de eventos
+  const buscarPacienteForm = document.getElementById("buscar-paciente-form");
+
+  buscarPacienteForm.addEventListener("submit", function (e) {
+    e.preventDefault(); // Evita que se recargue la página
+
+    // Obtén el valor del campo de entrada del Rut
+    const rutInput = document.getElementById("rut");
+    const rut = rutInput.value;
+
+    // Realiza una solicitud GET al servidor para buscar pacientes por Rut
+    fetch(`/api/pacientes/get/${rut}`, { method: 'GET' })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        // Limpia la tabla antes de agregar los resultados de la búsqueda
+        const tablaPacientes = document.getElementById('tabla-pacientes');
+        tablaPacientes.innerHTML = '';
+
+        if (data) {
+          // Crea una fila para mostrar el paciente encontrado
+          var fila = document.createElement('tr');
+          fila.innerHTML = `
+            <td>${data.rut}</td>
+            <td>${data.nombre}</td>
+            <td>${data.apellido_paterno}</td>
+            <td>${data.apellido_materno}</td>
+            <td>${data.genero}</td>
+            <td>${data.fecha_de_nacimiento}</td>
+            <td>${data.correo_electronico}</td>
+            <td>${data.telefono}</td>
+            <td>${data.edad}</td>
+            <td>${data.cancer}</td>
+            <td>${data.diagnostico_inicial}</td>
+            <td></td>
+            <td>${data.condiciones_fisicas}</td>
+            <td>${data.condiciones_ambientales}</td>
+            <td>${data.datos_gen_mol}</td>
+            <td>${data.historia_medica}</td>
+          `;
+
+          // Obtén la celda de imágenes
+          var celdaImagenes = fila.getElementsByTagName('td')[11];
+
+          // Crea elementos de imagen para cada imagen de radiografía y agrégalos a la celda
+          data.radiografias.split(',').forEach(function (imagen) {
+            var imagenRadiografia = document.createElement('img');
+            imagenRadiografia.src = `/../imagenes/${imagen.trim()}`;
+            celdaImagenes.appendChild(imagenRadiografia);
+          });
+
+          // Agrega la fila a la tabla
+          tablaPacientes.appendChild(fila);
+        } else {
+          // Si no se encuentra ningún paciente, muestra un mensaje
+          tablaPacientes.innerHTML = '<tr><td colspan="15">Paciente no encontrado</td></tr>';
+        }
+      })
+      .catch(function (error) {
+        console.error('Error al buscar paciente:', error);
+      });
+  });
+});
+
+
