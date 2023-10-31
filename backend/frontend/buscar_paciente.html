@@ -23,7 +23,7 @@
         </div>
 
         <!-- Filtros de datos -->
-        <div id="filtros">
+        <form id="form-filtros">
             <div>
                 <label for="filtro-nombres">Filtrar por Nombre/s:</label>
                 <input type="checkbox" class="habilitar-input" data-target="filtro-nombres">
@@ -49,8 +49,9 @@
                 <input type="checkbox" class="habilitar-input" data-target="filtro-fecha-nacimiento">
                 <input type="date" id="filtro-fecha-nacimiento" name="filtro-fecha-nacimiento" disabled>
             </div>
-            <button type="submit">Buscar por filtros</button>
-        </div>
+            <button type="submit" id="boton-buscar-filtros">Buscar por filtros</button>
+        </form>
+        
 
         <!-- Tabla de pacientes -->
         <div class="table-container">

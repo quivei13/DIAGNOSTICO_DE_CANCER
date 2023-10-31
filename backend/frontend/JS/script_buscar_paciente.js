@@ -175,3 +175,85 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+
+
+//BOTON BUSCAR POR FILTROS
+////////////////////////////////////////////////////////////////////////////////////////
+// Obtén el formulario y agrega un controlador de eventos
+const buscarPacienteForm = document.getElementById("form-filtros");
+const botonBuscarFiltros = document.getElementById("boton-buscar-filtros"); // Nuevo ID
+
+buscarPacienteForm.addEventListener("submit", function (e) {
+  e.preventDefault(); // Evita que se recargue la página
+
+  // Obtén los valores de los campos de búsqueda
+  const rutInput = document.getElementById("rut").value;
+  const nombresInput = document.getElementById("filtro-nombres").value;
+  const apellidoPaternoInput = document.getElementById("filtro-apellido-paterno").value;
+  const apellidoMaternoInput = document.getElementById("filtro-apellido-materno").value;
+  const cancerInput = document.getElementById("filtro-cancer-identificado").value;
+  const fechaNacimientoInput = document.getElementById("filtro-fecha-nacimiento").value;
+
+  // Realiza una solicitud GET al servidor para buscar pacientes según los filtros
+  fetch(`/api/pacientes/search?rut=${rutInput}&nombre=${nombresInput}&apellido_paterno=${apellidoPaternoInput}&apellido_materno=${apellidoMaternoInput}&cancer=${cancerInput}&fecha_de_nacimiento=${fechaNacimientoInput}`, { method: 'GET' })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      // Limpia la tabla antes de agregar los resultados de la búsqueda
+      const tablaPacientes = document.getElementById('tabla-pacientes');
+      tablaPacientes.innerHTML = '';
+
+      if (data.length > 0) {
+        data.forEach(function (paciente) {
+          // Crea una nueva fila en la tabla para cada paciente
+          var fila = document.createElement('tr');
+          // Agrega las celdas de datos
+
+          // Arreglar formato de fecha de nacimiento
+          const fechaNacimiento = paciente.fecha_de_nacimiento;
+          const fechaNacimientoObj = new Date(fechaNacimiento);
+
+          fila.innerHTML = `
+              <td>${paciente.rut}</td>
+              <td>${paciente.nombre}</td>
+              <td>${paciente.apellido_paterno}</td>
+              <td>${paciente.apellido_materno}</td>
+              <td>${paciente.genero}</td>
+              <td>${fechaNacimientoObj.toISOString().split('T')[0]}</td>
+              <td>${paciente.correo_electronico}</td>
+              <td>${paciente.telefono}</td>
+              <td>${paciente.edad}</td>
+              <td>${paciente.cancer}</td>
+              <td>${paciente.diagnostico_inicial}</td>
+              <td></td>
+              <td>${paciente.condiciones_fisicas}</td>
+              <td>${paciente.condiciones_ambientales}</td>
+              <td>${paciente.datos_gen_mol}</td>
+              <td>${paciente.historia_medica}</td>
+          `;
+
+          // Obtén la celda de imágenes (la celda número 11)
+          var celdaImagenes = fila.getElementsByTagName('td')[11];
+
+          // Crea un elemento de imagen para cada imagen de radiografía y agrégalo a la celda
+          paciente.radiografias.split(',').forEach(function (imagen) {
+            var imagenRadiografia = document.createElement('img');
+            imagenRadiografia.src = `/../imagenes/${imagen.trim()}`;
+            celdaImagenes.appendChild(imagenRadiografia);
+          });
+
+          // Agrega la fila a la tabla
+          tablaPacientes.appendChild(fila);
+        });
+      } else {
+        // Si no se encuentra ningún paciente, muestra un mensaje
+        tablaPacientes.innerHTML = '<tr><td colspan="15">No se encontraron pacientes</td></tr>';
+      }
+    })
+    .catch(function (error) {
+      console.error('Error al buscar pacientes:', error);
+    });
+});
+
+

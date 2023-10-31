@@ -85,6 +85,47 @@ router.delete('/:rut', (req, res, next) => {
 
 
 
+// Ruta para buscar pacientes por filtros
+router.get('/search', (req, res, next) => {
+  const { rut, nombre, apellido_paterno, apellido_materno, cancer, fecha_de_nacimiento } = req.query;
+
+  // Construye la consulta SQL dinámica en función de los filtros proporcionados
+  let sql = 'SELECT * FROM paciente WHERE 1'; // Comenzamos con un WHERE 1 para que sea más fácil agregar condiciones
+
+  if (rut) {
+    sql += ` AND rut = '${rut}'`;
+  }
+
+  if (nombre) {
+    sql += ` AND nombre LIKE '%${nombre}%'`;
+  }
+
+  if (apellido_paterno) {
+    sql += ` AND apellido_paterno LIKE '%${apellido_paterno}%'`;
+  }
+
+  if (apellido_materno) {
+    sql += ` AND apellido_materno LIKE '%${apellido_materno}%'`;
+  }
+
+  if (cancer) {
+    sql += ` AND cancer = '${cancer}'`;
+  }
+
+  if (fecha_de_nacimiento) {
+    sql += ` AND fecha_de_nacimiento = '${fecha_de_nacimiento}'`;
+  }
+
+  db.query(sql, (err, results) => {
+    if (err) {
+      return next(err);
+    }
+    res.json(results);
+  });
+});
+
+
+
 
 
 
