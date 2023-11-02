@@ -14,10 +14,10 @@
         <h1>Predicción de Cáncer</h1>
 
         <!-- Bloque de búsqueda -->
-        <div class="busqueda">
-            <label for="buscar-paciente">Buscar paciente:</label>
-            <input type="text" id="buscar-paciente" placeholder="Ingresa el Rut del paciente">
-        </div>
+        <form id="buscar-paciente-form">
+            <input type="text" id="rut" name="rut" placeholder="Ingrese el Rut del paciente" required>
+            <button type="submit">Buscar Paciente</button>
+        </form>
 
         <!-- Contenedor de la página -->
         <div class="pagina">
@@ -34,7 +34,7 @@
                                 <th>Apellido Materno</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tabla-pacientes">
                             <!-- Aquí se generarán dinámicamente las filas de la tabla con datos de pacientes -->
                             <!-- Ejemplo de fila de paciente:
                             <tr>
