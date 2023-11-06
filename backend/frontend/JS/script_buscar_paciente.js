@@ -129,6 +129,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const tablaPacientes = document.getElementById('tabla-pacientes');
         tablaPacientes.innerHTML = '';
 
+        // Arreglar formato de fecha de nacimiento
+        const fechaNacimiento = data.fecha_de_nacimiento;
+        const fechaNacimientoObj = new Date(fechaNacimiento);
+
         if (data) {
           // Crea una fila para mostrar el paciente encontrado
           var fila = document.createElement('tr');
@@ -138,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <td>${data.apellido_paterno}</td>
             <td>${data.apellido_materno}</td>
             <td>${data.genero}</td>
-            <td>${data.fecha_de_nacimiento}</td>
+            <td>${fechaNacimientoObj.toISOString().split('T')[0]}</td>
             <td>${data.correo_electronico}</td>
             <td>${data.telefono}</td>
             <td>${data.edad}</td>

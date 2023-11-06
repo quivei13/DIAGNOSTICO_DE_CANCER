@@ -34,3 +34,34 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
   console.log(`Servidor Express en funcionamiento en el puerto ${port}`);
 });
+
+
+
+// Cargar modelo de ML
+////////////////////////////////////////////////////////////////
+
+const { PythonShell } = require('python-shell');
+
+// Ruta completa al script de Python
+const scriptPath = path.join(__dirname, 'cargar_modelo.py');
+
+// Ruta al intérprete de Python
+const pythonPath = 'C:\\Users\\joaco\\AppData\\Local\\Programs\\Python\\Python311\\python.exe';
+
+// Opciones de PythonShell
+const options = {
+    pythonPath: pythonPath,
+};
+
+PythonShell.run(scriptPath, options, (err, results) => {
+    if (err) {
+        console.error(err);
+        // Manejar errores al cargar el modelo
+    } else {
+        // 'results' contiene la salida del script de Python (modelo cargado)
+        const modeloLogistico = results[0];
+        // Usa 'modeloLogistico' para realizar predicciones
+    }
+});
+//////////////////////////////////////////////////////////////
+
