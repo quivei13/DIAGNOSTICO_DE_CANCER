@@ -1,69 +1,81 @@
 // app.js
-
 const express = require('express');
-const path = require('path'); // Importa el módulo 'path'
+const path = require('path');
 const app = express();
-const port = process.env.PORT || 3000; // Puedes cambiar el puerto según tus preferencias
+const port = process.env.PORT || 3000;
+const { spawn } = require('child_process');
+const modeloPath = path.join(__dirname, 'modelo_logistico.pkl');
+const scriptPath = path.join(__dirname, 'cargar_modelo.py');
+const pythonPath = 'C:\\Users\\joaco\\AppData\\Local\\Programs\\Python\\Python311\\python.exe';
+const options = {
+  pythonPath: pythonPath,
+  args: [modeloPath],
+};
 
-// Configura middleware para manejar solicitudes JSON
 app.use(express.json());
-
-// Configura Express para servir archivos estáticos desde la carpeta 'frontend'
 app.use(express.static(path.join(__dirname, 'frontend')));
 
-
-// Rutas
-const pacientesRouter = require('./routes/pacientes'); // Crea este archivo y define tus rutas
-const experienciaRouter = require('./routes/experiencia'); // Nueva ruta para la experiencia
+const pacientesRouter = require('./routes/pacientes');
+const experienciaRouter = require('./routes/experiencia');
 const funcionarioRouter = require('./routes/funcionario');
 const inicioSesionRouter = require('./routes/login');
-const prediccionRouter = require('./routes/prediccion');
 
 app.use('/api/pacientes', pacientesRouter);
-app.use('/api/experiencia', experienciaRouter); // Monta las rutas de experiencia en '/api/experiencia'
+app.use('/api/experiencia', experienciaRouter);
 app.use('/api/funcionario', funcionarioRouter);
 app.use('/api/login', inicioSesionRouter);
-app.use('/api/prediccion', prediccionRouter);
 
-
-// Manejo de errores
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).json({ error: 'Error interno del servidor' });
 });
 
-// Inicia el servidor
 app.listen(port, () => {
   console.log(`Servidor Express en funcionamiento en el puerto ${port}`);
 });
 
+app.post('/api/realizar-prediccion', (req, res) => {
+  try {
+    const datosPaciente = req.body;
+    const procesoPython = spawn(pythonPath, [scriptPath, JSON.stringify(datosPaciente)], options);
+    procesoPython.on('close', (code) => {
+      if (code === 0) {
+        console.log('Predicción realizada exitosamente');
+        // Maneja el resultado de la predicción aquí
+        const resultadoPrediccion = 'valor de la columna'; // Reemplaza "valor de la columna" con el valor real de la columna que se está intentando predecir
+        res.json({ valorColumna: resultadoPrediccion });
+      } else {
+        console.error('Error al realizar la predicción');
+        res.status(500).json({ error: 'Error al realizar la predicción' });
+      }
+    });
+  } catch (error) {
+    console.error('Error al realizar la predicción:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+});
 
-
-// Cargar modelo de ML
-////////////////////////////////////////////////////////////////
-
-const { PythonShell } = require('python-shell');
-
-// Ruta completa al script de Python
-const scriptPath = path.join(__dirname, 'cargar_modelo.py');
-
-// Ruta al intérprete de Python
-const pythonPath = 'C:\\Users\\joaco\\AppData\\Local\\Programs\\Python\\Python311\\python.exe';
-
-// Opciones de PythonShell
-const options = {
-    pythonPath: pythonPath,
+const cargarModelo = () => {
+  return new Promise((resolve, reject) => {
+    const procesoPython = spawn(pythonPath, [scriptPath]);
+    procesoPython.on('close', (code) => {
+      if (code === 0) {
+        console.log('Modelo cargado exitosamente');
+        resolve();
+      } else {
+        console.error('Error al cargar el modelo');
+        reject();
+      }
+    });
+  });
 };
 
-PythonShell.run(scriptPath, options, (err, results) => {
-    if (err) {
-        console.error(err);
-        // Manejar errores al cargar el modelo
-    } else {
-        // 'results' contiene la salida del script de Python (modelo cargado)
-        const modeloLogistico = results[0];
-        // Usa 'modeloLogistico' para realizar predicciones
-    }
-});
-//////////////////////////////////////////////////////////////
-
+cargarModelo()
+  .then(() => {
+    console.log('El modelo se ha cargado exitosamente');
+    // Continúa con el resto de tu código aquí
+  })
+  .catch(() => {
+    console.error('Ocurrió un error al cargar el modelo');
+    // Maneja el error aquí
+  });

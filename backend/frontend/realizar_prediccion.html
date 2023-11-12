@@ -8,20 +8,15 @@
 </head>
 <body>
     <div class="container">
-
         <button id="boton-volver">Volver</button>
-
         <h1>Predicción de Cáncer</h1>
-
         <!-- Bloque de búsqueda -->
         <form id="buscar-paciente-form">
             <input type="text" id="rut" name="rut" placeholder="Ingrese el Rut del paciente" required>
             <button type="submit">Buscar Paciente</button>
         </form>
-
         <!-- Contenedor de la página -->
         <div class="pagina">
-            
             <!-- Tabla de pacientes -->
             <div class="columna-izquierda">
                 <div class="tabla-pacientes">
@@ -36,41 +31,26 @@
                         </thead>
                         <tbody id="tabla-pacientes">
                             <!-- Aquí se generarán dinámicamente las filas de la tabla con datos de pacientes -->
-                            <!-- Ejemplo de fila de paciente:
-                            <tr>
-                                <td>Rut del paciente</td>
-                                <td>Nombre del paciente</td>
-                                <td>Apellido Paterno del paciente</td>
-                                <td>Apellido Materno del paciente</td>
-                            </tr>
-                            -->
                         </tbody>
                     </table>
                 </div>
-                
-                
             </div>
-
             <div class="columna-central">
-                <button>Realizar prediccion</button>
+                <button id="boton-prediccion">Realizar prediccion</button>
             </div>
-
             <!-- Bloque de resultados de la predicción -->
             <div class="columna-derecha">
                 <div class="resultados">
                     <h2>Resultados de la predicción</h2>
-                    <!-- Aquí se mostrarán los resultados de la predicción -->
+                    <div id="resultado-prediccion"></div>
                 </div>
             </div>
-
         </div>
     </div>
-
     <div> 
         <button class="cerrar_sesion" id="cerrar-sesion">Cerrar Sesión</button>
         <label for="" style="position: absolute; top: 20px; right: 180px;">Cuenta 1</label>
     </div>
-
     <script src="JS/script_realizar_prediccion.js"></script> 
 </body>
 </html>

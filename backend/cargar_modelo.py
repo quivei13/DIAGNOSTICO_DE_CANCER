@@ -1,11 +1,9 @@
 import joblib
 
-# Ruta al modelo guardado
-modelo_guardado = "modelo_logistico.pkl"
+# Ruta al archivo pkl
+modelPath = './modelo_logistico.pkl'
 
-# Cargar el modelo
-modelo_logistico = joblib.load(modelo_guardado)
+# Cargar el modelo desde el archivo pkl
+modeloLogistico = joblib.load(modelPath)
 
-# Imprimir el modelo (se enviará de vuelta a Node.js)
-print(modelo_logistico)
-
+# Realizar predicciones u otras operaciones con el modelo
